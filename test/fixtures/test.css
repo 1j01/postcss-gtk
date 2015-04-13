@@ -1,0 +1,15 @@
+
+@define-color text_color rgba(255, 0, 255, 0.5);
+@define-color bg_color rgba(255, 255, 255, 0.5);
+
+.ugly-function-calls {
+	color: shade (@text_color, 0.90);
+	background-color: alpha (@bg_color, 0.8)
+}
+
+
+.view.image,
+.view.image:hover,
+.view.image.selected {
+  color: shade(rgba(132, 132, 132, 1), 0.80);
+}

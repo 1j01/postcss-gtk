@@ -1,0 +1,47 @@
+{
+  "name": "rework-gtk",
+  "description": "Processes GTK CSS into browser CSS",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/1j01/rework-gtk.git"
+  },
+  "bugs": {
+    "url": "http://github.com/1j01/rework-gtk/issues"
+  },
+  "license": "MIT",
+  "keywords": [
+    "rework",
+    "rework-plugin",
+    "gtk",
+    "css",
+    "preprocessor",
+    "gtk-css",
+    "stylesheet",
+    "stylesheets",
+    "theme",
+    "themes",
+    "os",
+    "gui",
+    "browser",
+    "web"
+  ],
+  "main": "lib/rework-gtk.js",
+  "scripts": {
+    "prepublish": "coffee -o lib/ -c src/",
+    "watch": "coffee -o lib/ -cw src/",
+    "test": "coffee test/test.coffee"
+  },
+  "dependencies": {
+    "color-convert": "^0.5.2",
+    "color-parser": "^0.1.0",
+    "rework": "^1.0.1",
+    "rework-import": "^2.0.1",
+    "rework-plugin-function": "^1.0.2"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.9.1",
+    "glob": "^5.0.5",
+    "mkdirp": "^0.5.0"
+  }
+}

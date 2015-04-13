@@ -1,0 +1,68 @@
+* {
+  padding: 1;
+  -GtkButton-child-displacement-x: 1;
+  -GtkButton-child-displacement-y: 1;
+  -GtkCheckButton-indicator-size: 14;
+
+  background-color: @bg_color;
+  color: @fg_color;
+
+  -Clearlooks-colorize-scrollbar: true;
+  -Clearlooks-style: classic;
+}
+
+*:hover {
+  background-color: shade (@bg_color, 1.02);
+}
+
+*:selected {
+  background-color: @selected_bg_color;
+  color: @selected_fg_color;
+}
+
+*:insensitive {
+  color: shade (@bg_color, 0.7);
+}
+
+*:active {
+  background-color: shade (@bg_color, 0.9);
+}
+
+.tooltip {
+  padding: 4;
+
+  background-color: @tooltip_bg_color;
+  color: @tooltip_fg_color;
+}
+
+.button {
+  padding: 3;
+  background-color: shade (@bg_color, 1.04);
+}
+
+.button:hover {
+  background-color: shade (@bg_color, 1.06);
+}
+
+.button:active {
+  background-color: shade (@bg_color, 0.85);
+}
+
+.entry {
+  padding: 3;
+
+  background-color: @base_color;
+  color: @text_color;
+}
+
+.entry:selected {
+  background-color: mix (@selected_bg_color, @base_color, 0.4);
+  -Clearlooks-focus-color: shade (0.65, @selected_bg_color)
+}
+
+/* The latter selector is an specification of the first,
+   since any widget may use the same classes or names */
+#window-name .button,
+GtkWindow#window-name GtkButton.button {
+  background-color: #fff;
+}
