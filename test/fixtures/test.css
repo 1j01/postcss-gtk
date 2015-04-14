@@ -11,5 +11,5 @@
 .view.image,
 .view.image:hover,
 .view.image.selected {
-  color: shade(rgba(132, 132, 132, 1), 0.80);
+	color: shade(rgba(132, 132, 132, 1), 0.80);
 }

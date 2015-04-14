@@ -1,43 +1,48 @@
 {
-  "name": "rework-gtk",
+  "name": "postcss-gtk",
   "description": "Processes GTK CSS into browser CSS",
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "http://github.com/1j01/rework-gtk.git"
+    "url": "http://github.com/1j01/postcss-gtk.git"
   },
   "bugs": {
-    "url": "http://github.com/1j01/rework-gtk/issues"
+    "url": "http://github.com/1j01/postcss-gtk/issues"
   },
   "license": "MIT",
   "keywords": [
     "rework",
-    "rework-plugin",
+    "postcss",
+    "postcss-plugin",
     "gtk",
+    "gtk+",
+    "gtk3",
     "css",
     "preprocessor",
+    "processor",
+    "converter",
+    "conversion",
     "gtk-css",
     "stylesheet",
     "stylesheets",
     "theme",
     "themes",
-    "os",
+    "linux",
     "gui",
     "browser",
     "web"
   ],
-  "main": "lib/rework-gtk.js",
+  "main": "lib/postcss-gtk.js",
   "scripts": {
     "prepublish": "coffee -o lib/ -c src/",
-    "watch": "coffee -o lib/ -cw src/",
     "test": "coffee test/test.coffee"
   },
   "dependencies": {
     "color-convert": "^0.5.2",
     "color-parser": "^0.1.0",
-    "rework": "^1.0.1",
-    "rework-import": "^2.0.1",
-    "rework-plugin-function": "^1.0.2"
+    "postcss": "^4.1.5",
+    "postcss-import": "^5.1.1",
+    "reduce-function-call": "^1.0.1"
   },
   "devDependencies": {
     "coffee-script": "^1.9.1",
