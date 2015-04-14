@@ -15,8 +15,6 @@ module.exports.hook = (value, node)->
 		str = fn str, node
 		if typeof str isnt "string"
 			throw new Error "Value hook returned #{typeof str}"
-	console.log "before hook:", value
-	console.log "after hook:", str
 	str
 
 module.exports.add = (hook)->
