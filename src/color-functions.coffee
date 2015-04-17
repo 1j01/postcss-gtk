@@ -5,7 +5,17 @@ convert = require "color-convert"
 
 debug = -> # console.log arguments...
 
-parse = (value)-> (tryToParseColor value) ? throw new Error "Failed to parse color value #{value}"
+current_node = null
+parse = (value)->
+	try
+		(tryToParseColor value) ? throw new Error "Failed to parse color value #{value}"
+	catch e
+		if current_node
+			console.error e.stack
+			throw current_node.error e.message
+		else
+			console.error "Error parsing color (with no associated CSS node)"
+			throw e
 
 lerp = (a, b, x)-> a + (b - a) * x
 rgba = (r, g, b, a)->
@@ -61,23 +71,50 @@ colorTransformers =
 
 
 
-refunc = require "reduce-function-call"
+# refunc = require "reduce-function-call"
+balanced = require "balanced-match"
 
 valueHook = require "./value-hook"
 
+add_css_function = (fn_name, fn)->
+	valueHook.add (str, node)->
+		startIndex = str.indexOf(fn_name + "(")
+		return str if startIndex is -1
+		
+		matches = balanced "(", ")", str.substring startIndex
+		# console.log str, fn_name, matches #, str.substring startIndex
+		if matches
+			# console.log "matches.post:", matches.post
+			# console.log "   substring:", str.substr matches.end
+			args = postcss.list.comma matches.body
+			args = (valueHook.hook arg for arg in args)
+			pre = str.slice 0, startIndex
+			post = str.substr startIndex + matches.end + 1
+			# console.log "STR", str
+			# console.log "---", (str.slice 0, startIndex) + fn_name + "(" + matches.body + (str.substr startIndex + matches.end)
+			# console.assert str is (str.slice 0, startIndex) + fn_name + "(" + matches.body + (str.substr startIndex + matches.end)
+			# console.log "doing", fn_name+"()", "in", str#JSON.stringify str
+			# console.log "PRE+POST:", (str.slice 0, startIndex) + (str.substr startIndex + matches.end + 1)
+			# console.log "pre+post:", pre + post
+			
+			current_node = node
+			result = fn args...
+			
+			# return result + post
+			# console.warn " << ", str
+			# console.warn " >> ", pre + result + post
+			return valueHook.hook pre + result + post
+		else
+			# this should never occur, since PostCSS checks for mismatched parenthesis before processing... right?
+			# process.stderr.write "#{str} OUTPUTOUTPOUTPOUTOPUTOUTPOTUOPTUPOUTOUTPUTOUTPOUTPOUTOPUTOUTPOTUOPTUPOUTOUTPUTOUTPOUTPOUTOPUTOUTPOTUOPTUPOUTOUTPUTOUTPOUTPOUTOPUTOUTPOTUOPTUPOUTOUTPUTOUTPOUTPOUTOPUTOUTPOTUOPTUPOUTOUTPUTOUTPOUTPOUTOPUTOUTPOTUOPTUPOUTOUTPUTOUTPOUTPOUTOPUTOUTPOTUOPTUPOUTOUTPUTOUTPOUTPOUTOPUTOUTPOTUOPTUPOUT"
+			# throw new SyntaxError "#{fn_name}(): missing closing ')' in the value #{JSON.stringify str}"
+			# return "#{fn_name}(): missing closing ')' in the value #{JSON.stringify str}"
+			console.log args
+			console.log "#{fn_name}(): missing closing ')' in the value #{JSON.stringify str}"
+			return "BLUE"
 
-valueHook.add (str, node)->
-	
-	for fn_name, fn of colorTransformers
-		if str.indexOf(fn_name) isnt -1
-			try
-				str = refunc str, fn_name, (body, functionIdentifier, call)->
-					args = postcss.list.comma body
-					args = (valueHook.hook arg for arg in args)
-					str.replace call, fn args...
-			catch e
-				throw node.error "Function call? What? #{e}"
-	str
+for fn_name, fn of colorTransformers
+	add_css_function fn_name, fn
 
 
 

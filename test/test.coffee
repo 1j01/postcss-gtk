@@ -9,7 +9,7 @@ try
 	postgtk = require "../src/postcss-gtk.coffee"
 catch e
 	console.error "Failed to load postcss-gtk.coffee (in development)\n"
-	throw e unless /Cannot find module/.exec e
+	throw e if e.message.indexOf "Cannot find module '../src/postcss-gtk.coffee'" is -1
 	postgtk = require ".."
 
 cwd = join __dirname, "fixtures"

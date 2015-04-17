@@ -13,3 +13,10 @@
 .view.image.selected {
 	color: shade(rgba(132, 132, 132, 1), 0.80);
 }
+
+@define-color colorPrimary @titlebar_color;
+
+.titlebar {
+    text-shadow: 0 1px alpha (shade (@colorPrimary, 1.4), 0.40);
+    icon-shadow: 0 1px alpha (shade (@colorPrimary, 1.4), 0.40);
+}
