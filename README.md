@@ -2,6 +2,8 @@
 # postcss-gtk
 
 Processes GTK+ CSS into browser CSS
-with [postcss](https://github.com/postcss/postcss)
+with [PostCSS](https://github.com/postcss/postcss)
 
-See [elementary.css](http://github.com/1j01/elementary.css)
+See the [demo](1j01.github.io/elementary.css/demo/) of
+[elementary.css](http://github.com/1j01/elementary.css)
+
