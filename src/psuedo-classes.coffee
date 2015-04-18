@@ -8,3 +8,14 @@ module.exports = postcss.plugin "gtk-color-variables", ->
 				.replace /:selected/g, ".selected"
 				.replace /:insensitive/g, ":disabled"
 				.replace /:inconsistent/g, ":indeterminate"
+				.replace /:prelight/g, ":hover"
+				.replace /:focused/g, ":focus"
+			
+			if (rule.selector.indexOf ":backdrop") isnt -1
+				selectors = for sel in postcss.list.comma rule.selector
+					if (sel.indexOf ":backdrop") isnt -1
+						sel = ".window-frame:not(.active) " + sel.replace ":backdrop", ""
+					if (sel.indexOf ":backdrop") isnt -1
+						throw rule.error "Unnecessary extra :backdrop in #{JSON.stringify sel}"
+					sel
+				rule.selector = selectors.join ",\n"
