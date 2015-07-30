@@ -1,7 +1,7 @@
 {
   "name": "postcss-gtk",
-  "description": "Processes GTK CSS into browser CSS",
-  "version": "1.0.0",
+  "description": "Processes GTK+ CSS into browser CSS",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
     "url": "http://github.com/1j01/postcss-gtk.git"
@@ -23,11 +23,14 @@
     "converter",
     "conversion",
     "gtk-css",
+    "styles",
     "stylesheet",
     "stylesheets",
     "theme",
     "themes",
     "linux",
+    "os",
+    "operating-system",
     "gui",
     "browser",
     "web"
