@@ -1,7 +1,7 @@
 {
   "name": "postcss-gtk",
   "description": "Processes GTK+ CSS into browser CSS",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "repository": {
     "type": "git",
     "url": "http://github.com/1j01/postcss-gtk.git"
